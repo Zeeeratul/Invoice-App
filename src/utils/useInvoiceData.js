@@ -1,5 +1,5 @@
 import React, { useReducer, useEffect } from 'react'
-import InvoicesData from '../data/data.json'
+import InvoicesData from '../invoices.json'
 import _ from 'lodash'
 
 // put json in the state

@@ -1,0 +1,75 @@
+.button {
+    border: none;
+    border-radius: 24px;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &__title {
+        margin: 0px;
+    }
+
+    &__circle {
+        width: 32px;
+        height: 32px;
+        border-radius: 100%;
+        background-color: #FFFFFF;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 16px;
+    }
+
+    &--icon {
+        padding: 8px;
+        padding-right: 15px;
+        background-color: #7C5DFA;
+        color: #FFFFFF;
+    }
+}
+
+.button-status {
+    width: 104px;
+    height: 40px;
+    border: none;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &__circle {
+        width: 8px;
+        height: 8px;
+        border-radius: 100%;
+        margin-right: 8px;
+    }
+
+    &__title {
+        text-transform: capitalize;
+    }
+
+    &--paid {
+        .button-status__circle {
+            background: #33D69F;
+        }
+        color: #33D69F;
+        background: rgba(51, 214, 159, 0.06);
+    }
+
+    &--pending {
+        .button-status__circle {
+            background: #FF8F00;
+        }
+        color: #FF8F00;
+        background: rgba(255,143,0, 0.06);
+    }
+
+    &--draft {
+        .button-status__circle {
+            background: #DFE3FA;
+        }
+        color: #DFE3FA;
+        background: rgba(223,227,250, 0.06);
+    }
+}

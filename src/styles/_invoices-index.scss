@@ -1,0 +1,96 @@
+.invoices-header {
+    margin-bottom: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .info {
+        &__title {
+            margin: 0px 0px 4px 0px;
+            @include themify($themes) {
+                color: themed('textPrimary');
+            }
+        }
+        
+        &__number {
+            margin: 0px;
+            @include themify($themes) {
+                color: themed('textSecondary');
+            }
+        }
+    }
+
+    .select {
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+        margin-right: 18px;
+
+        @include themify($themes) {
+            color: themed('textPrimary');
+        }
+
+        &__title {
+            margin-right: 9px;
+        }
+    }
+}
+
+.invoices-list {
+    .invoice {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 15px 8px 15px 24px;
+        row-gap: 8px;
+        grid-template-areas: 
+            "id client-name"
+            ". ."
+            "payment-date button"
+            "total button";
+        margin-bottom: 16px;
+
+        > * {
+            margin: 0px;
+        }
+    
+        &__id {
+            grid-area: id;
+            @include themify($themes) {
+                color: themed('textPrimary');
+            }
+            > span {
+                color: #7E88C3;
+            }
+        }
+        
+        &__payment-date {
+            grid-area: payment-date;
+            @include themify($themes) {
+                color: themed('textSecondary');
+            }
+        }
+        
+        &__client-name {
+            justify-self: end;
+            grid-area: client-name;
+            @include themify($themes) {
+                color: themed('textSecondary');
+            }
+        }
+        
+        &__total {
+            grid-area: total;
+            align-self: end;
+            @include themify($themes) {
+                color: themed('textPrimary');
+            }
+        }
+    
+        &__button {
+            grid-area: button;
+            justify-self: end;
+            align-self: end;
+        }
+    }
+
+}
