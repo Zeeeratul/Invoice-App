@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { ThemeContext } from './utils/ThemeContext'
 import { BrowserRouter as Router, Route } from "react-router-dom"
 import Header from './template/Header'
+import InvoiceFooter from './template/InvoiceFooter'
 import InvoicesIndex from './pages/InvoicesIndex'
-// import Invoice from './pages/Invoice'
+import Invoice from './pages/Invoice'
 
 function App() {
 
@@ -16,6 +16,10 @@ function App() {
       <Router>
         <Route exact path="/">
           <InvoicesIndex />
+        </Route>
+        <Route path="/:id">
+          <Invoice />
+          <InvoiceFooter />
         </Route>
       </Router>
     </div>

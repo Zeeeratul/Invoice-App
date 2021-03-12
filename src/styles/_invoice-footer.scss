@@ -1,0 +1,11 @@
+.footer {
+    height: 91px;
+    padding: 0px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @include themify($themes) {
+        background-color: themed('backgroundCard');
+    }
+}

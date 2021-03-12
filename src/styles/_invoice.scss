@@ -1,0 +1,172 @@
+.link {
+    display: flex;
+    align-items: baseline;
+
+    &__text {
+        margin: 0px;
+        margin-left: 24px;
+    }
+    @include themify($themes) {
+        color: themed('textPrimary');
+    }
+}
+
+.status {
+    margin-top: 32px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &__text {
+        @include themify($themes) {
+            color: themed('textSecondary');
+        }
+    }
+}
+
+.informations {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 150px 150px 50px 1fr;
+    row-gap: 32px;
+    margin-bottom: 32px;
+
+    .sender {
+        grid-column: span 2;
+        &__id {
+            margin: 0px;
+            margin-bottom: 4px;
+            @include themify($themes) {
+                color: themed('textPrimary');
+            }
+        }
+
+        &__desc {
+            margin: 0px;
+            margin-bottom: 30px;
+        }
+
+        &__hashtag {
+            color: #7E88C3;
+        }
+    }
+
+    .dates {
+        &__invoice {
+            margin-bottom: 32px;
+        }
+
+        &__title {
+            margin: 0px;
+            margin-bottom: 12px;
+        }
+
+        &__date {
+            margin: 0px;
+            @include themify($themes) {
+                color: themed('textPrimary');
+            }
+        }
+    }
+
+    .client-infos {
+        &__title {
+            margin: 0px;
+            margin-bottom: 12px;
+        }
+
+        &__name {
+            margin: 0px;
+            @include themify($themes) {
+                color: themed('textPrimary');
+            }
+        }
+
+        &__addr {
+            margin: 0px;
+            margin-top: 8px;
+        }
+    }
+
+    .client-email {
+        grid-column: span 2;
+
+        &__send {
+            margin: 0px;
+            margin-bottom: 12px;
+        }
+        
+        &__email {
+            margin: 0px;
+            @include themify($themes) {
+                color: themed('textPrimary');
+            }
+        }
+    }
+
+
+
+    .resume {
+        background-color: #252945;
+        border-radius: 8px;
+        overflow: hidden;
+        grid-column: 1 / 3;
+        grid-row: 4;
+
+        .items_lists {
+            width: 100%;
+            padding: 24px;
+
+            .item {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 15px 15px;
+                row-gap: 8px;
+                &:not(:last-of-type) {
+                    margin-bottom: 25px;
+                }
+
+                &__total {
+                    grid-column: 2 / 3;
+                    grid-row: 1 / 3;
+                    margin: auto;
+                    margin-right: 0px;
+                    @include themify($themes) {
+                        color: themed('textPrimary');
+                    }
+                }
+
+                &__name, &__sum {
+                    margin: 0px;
+                }
+
+                &__name {
+                    @include themify($themes) {
+                        color: themed('textPrimary');
+                    }
+                }
+            }
+        }
+
+        &__total {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 24px;
+            background-color: #0C0E16;
+            color: white;
+        }
+
+        &__text {
+            margin: 0;
+        }
+
+        &__sum {
+            font-size: 20px;
+            line-height: 32px;
+            letter-spacing: -0.416667px;
+        }
+    }
+}
