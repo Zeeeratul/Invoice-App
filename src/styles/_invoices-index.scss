@@ -1,96 +1,289 @@
-.invoices-header {
-    margin-bottom: 32px;
+.invoices {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    .info {
-        &__title {
-            margin: 0px 0px 4px 0px;
-            @include themify($themes) {
-                color: themed('textPrimary');
-            }
-        }
-        
-        &__number {
-            margin: 0px;
-            @include themify($themes) {
-                color: themed('textSecondary');
-            }
-        }
+    flex-direction: column;
+    padding: 32px 24px 0px 24px;
+  
+    @include breakpoint-up(medium) {
+        padding: 56px 48px 0px 48px;
+    }
+  
+    @include breakpoint-up(large) {
+        // padding: 72px 48px 0px 48px;
+        padding: 72px 48px 0px 175px;
     }
 
-    .select {
+    .invoices-header {
+        margin: 0px auto;
+        max-width: 730px;
+        width: 100%;
+        margin-bottom: 32px;
         display: flex;
+        justify-content: space-between;
         align-items: center;
-        margin-left: auto;
-        margin-right: 18px;
-
-        @include themify($themes) {
-            color: themed('textPrimary');
+    
+        @include breakpoint-up(medium) {
+            margin-bottom: 56px;
         }
+
+        @include breakpoint-up(large) {
+            margin-bottom: 65px;
+        }
+    
+        .info {
+            &__title {
+                margin: 0px 0px 4px 0px;
+                @include themify($themes) {
+                    color: themed('textPrimary');
+                }
+            }
+            
+            &__number {
+                margin: 0px;
+                @include themify($themes) {
+                    color: themed('textSecondary');
+                }
+            }
+        }
+    
+        .select {
+            position: relative;
+            margin-left: auto;
+            margin-right: 18px;
+            
+            &__title-container {
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                @include themify($themes) {
+                    color: themed('textPrimary');
+                }
+            }
+                        
+            &__title {
+                margin-right: 9px;
+            }
+    
+            &__dropdown {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 50px;
+                left: 50%;
+                margin-left: -100px;
+                padding: 24px;
+                box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
+                border-radius: 8px;
+                width: 192px;
+
+                @include themify($themes) {
+                    background-color: themed('selectBackground');
+                }
+            }
+
+            &__label {
+                display: flex;
+                cursor: pointer;
+
+                @include themify($themes) {
+                    color: themed('textPrimary');
+                }
+        
+                &:hover {
+                    .select__custom-checkbox {
+                        border: 1px solid #7C5DFA;
+                        box-sizing: border-box;
+                    }
+                }
+        
+                &:not(:last-of-type) {
+                    margin-bottom: 15px;
+                }
+            }
+        
+            &__custom-checkbox {
+                width: 16px;
+                height: 16px;
+                border-radius: 2px;
+                margin-right: 13px;
+                position: relative;
+
+                @include themify($themes) {
+                    background-color: themed('checkboxColor');
+                }
+        
+                &::before {
+                    content: "";
+                    display: none;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-image: url('../assets/icon-check.svg');
+                    background-repeat: no-repeat;
+                    background-position: center;
+                }
+            }
+        
+            &__checkbox {
+                cursor: pointer;
+                position: absolute;
+                opacity: 0;
+                height: 0;
+                width: 0;
+        
+                &:checked {
+                    ~ .select__custom-checkbox {
+                        background-color: #7C5DFA;
+        
+                        &::before {
+                            display: block;
+                        }
+                    }
+                }
+            }
+        
+            &__text {
+                margin: 0px;
+                margin-top: 2px;
+            }
+
+            &--open {
+                .select__arrow {
+                    transform: rotate(180deg);
+                }
+
+                .select__dropdown {
+                    display: flex;
+                }
+            }
+        }
+    }
+
+    .invoices-list {
+        max-width: 730px;
+        margin: 0px auto;
+        width: 100%;
+    
+        .invoice {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 15px 8px 15px 24px;
+            row-gap: 8px;
+            grid-template-areas: 
+                "id client-name"
+                ". ."
+                "payment-date button"
+                "total button";
+            margin-bottom: 16px;
+
+            @include breakpoint-up(medium) {
+                grid-template-columns: 84px 131px auto 121px 104px 4px;
+                grid-template-rows: 1fr;
+                column-gap: 20px;
+                grid-template-areas: "id payment-date client-name total button arrow";
+                justify-items: center;
+                align-items: center;
+
+                &__client-name {
+                    justify-self: start;
+                }
+            }
+    
+            > * {
+                margin: 0px;
+            }
+        
+            &__id {
+                grid-area: id;
+                @include themify($themes) {
+                    color: themed('textPrimary');
+                }
+                > span {
+                    color: #7E88C3;
+                }
+            }
+            
+            &__payment-date {
+                grid-area: payment-date;
+                @include themify($themes) {
+                    color: themed('textSecondary');
+                }
+            }
+            
+            &__client-name {
+                justify-self: end;
+                grid-area: client-name;
+                @include themify($themes) {
+                    color: themed('textSecondary');
+                }
+
+                @include breakpoint-up(medium) {
+                    justify-self: start;
+                }
+            }
+            
+            &__total {
+                grid-area: total;
+                align-self: end;
+                @include themify($themes) {
+                    color: themed('textPrimary');
+                }
+
+                @include breakpoint-up(medium) {
+                    margin-right: 20px;
+                    justify-self: end;
+                    align-self: center;
+                }
+            }
+        
+            &__button {
+                grid-area: button;
+                justify-self: end;
+                align-self: end;
+            }
+
+            &__arrow {
+                grid-area: arrow;
+                display: none;
+                width: 4px;
+                height: 8px;
+                cursor: pointer;
+
+                @include breakpoint-up(medium) {
+                    display: block;
+                }
+            }
+        }
+    }
+
+    .invoices-empty {
+        margin-top: 150px;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        max-width: 242px;
 
         &__title {
-            margin-right: 9px;
+            @include themify($themes) {
+                color: themed('textPrimary');
+            }
+            margin: 40px 0px 24px;
         }
-    }
-}
-
-.invoices-list {
-    .invoice {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 15px 8px 15px 24px;
-        row-gap: 8px;
-        grid-template-areas: 
-            "id client-name"
-            ". ."
-            "payment-date button"
-            "total button";
-        margin-bottom: 16px;
-
-        > * {
+        
+        &__body {
+            @include themify($themes) {
+                color: themed('textSecondary');
+            }
             margin: 0px;
         }
-    
-        &__id {
-            grid-area: id;
-            @include themify($themes) {
-                color: themed('textPrimary');
-            }
-            > span {
-                color: #7E88C3;
-            }
-        }
-        
-        &__payment-date {
-            grid-area: payment-date;
-            @include themify($themes) {
-                color: themed('textSecondary');
-            }
-        }
-        
-        &__client-name {
-            justify-self: end;
-            grid-area: client-name;
-            @include themify($themes) {
-                color: themed('textSecondary');
-            }
-        }
-        
-        &__total {
-            grid-area: total;
-            align-self: end;
-            @include themify($themes) {
-                color: themed('textPrimary');
-            }
-        }
-    
-        &__button {
-            grid-area: button;
-            justify-self: end;
-            align-self: end;
+
+        &__new {
+            font-weight: 700;
+            cursor: pointer;
         }
     }
-
 }

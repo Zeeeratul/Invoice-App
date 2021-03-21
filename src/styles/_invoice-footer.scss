@@ -8,4 +8,8 @@
     @include themify($themes) {
         background-color: themed('backgroundCard');
     }
+
+    @include breakpoint-up(medium) {
+        display: none;
+    }
 }

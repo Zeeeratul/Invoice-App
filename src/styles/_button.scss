@@ -21,6 +21,11 @@
         justify-content: center;
         margin-right: 16px;
     }
+    
+    &__plus-icon {
+        width: 10px;
+        height: 10px;
+    }
 
     &--icon {
         padding: 8px;
@@ -48,6 +53,7 @@
 }
 
 .button-status {
+    cursor: pointer;
     width: 104px;
     height: 40px;
     border: none;

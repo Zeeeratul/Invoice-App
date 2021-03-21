@@ -13,7 +13,7 @@ export default function Invoice() {
     console.log(invoice)
 
     return (
-        <main className="main">
+        <main className="main invoice-page">
             <Link to="/" className="link">
                 <ArrowLeftIcon />
                 <H3sm className="link__text">Go back</H3sm>
@@ -25,12 +25,19 @@ export default function Invoice() {
                     <div className="button-status__circle" />
                     <H3sm className="button-status__title">{invoice.status}</H3sm>
                 </button>
+                <div className="crud-buttons">
+                    <button className="crud-buttons__button button button--edit">Edit</button>
+                    <button className="crud-buttons__button button button--delete">Delete</button>
+                    <button className="crud-buttons__button button button--mark-paid">Mark as Paid</button>
+                </div>
             </div>
 
             <div className="card informations">
                 <div className="sender">
-                    <H3 className="sender__id"><span className="sender__hashtag">#</span>{invoice.id}</H3>
-                    <Body1 className="sender__desc">{invoice.description}</Body1>
+                    <div>
+                        <H3 className="sender__id"><span className="sender__hashtag">#</span>{invoice.id}</H3>
+                        <Body1 className="sender__desc">{invoice.description}</Body1>
+                    </div>
                     <Body2 className="sender__addr">
                         {invoice.senderAddress.street}<br/>
                         {invoice.senderAddress.city}<br/>
@@ -66,24 +73,41 @@ export default function Invoice() {
                     <H3 className="client-email__email">{invoice.clientEmail}</H3>
                 </div>
 
-
-                <div className="resume">
-                    <div className="items_lists">
+                <table className="table-resume">
+                    <thead className="table-resume__header">
+                        <tr>
+                            <th className="table-resume__cell table-resume__cell--first"><Body2>Item Name</Body2></th>
+                            <th className="table-resume__cell table-resume__cell--second"><Body2>QTY.</Body2></th>
+                            <th className="table-resume__cell table-resume__cell--third"><Body2>Price</Body2></th>
+                            <th className="table-resume__cell table-resume__cell--last"><Body2>Total</Body2></th>
+                        </tr>
+                    </thead>
+                    <tbody className="table-resume__body">
                         {invoice.items.map(item => (
-                            <div className="item" key={`invoice_item_${item.name}`}>
-                                <H3sm className="item__name">{item.name}</H3sm>
-                                <H3sm className="item__sum">{item.quantity} x £ {item.price}</H3sm>
-                                <H3sm className="item__total">£ {item.price * item.quantity}</H3sm>
-                            </div>
+                            <tr key={`invoice_item_${item.name}`}>
+                                <td 
+                                className="table-resume__cell table-resume__cell--first"
+                                ><H3sm>{item.name}</H3sm></td>
+                                <td 
+                                className="table-resume__cell table-resume__cell--second"
+                                ><H3sm>{item.quantity}</H3sm></td>
+                                <td 
+                                className="table-resume__cell table-resume__cell--third"
+                                ><H3sm>£ {item.price.toFixed(2)}</H3sm></td>
+                                <td 
+                                className="table-resume__cell table-resume__cell--last"
+                                ><H3sm>£ {(item.price * item.quantity).toFixed(2)}</H3sm></td>
+                            </tr>
                         ))}
-                    </div>
-                    <div className="resume__total">
-                        <Body2 className="resume__text">Amount due</Body2>
-                        <span className="resume__sum">£ {invoice.total}</span>
-                    </div>
-                </div>
+                    </tbody>
+                    <tfoot className="table-resume__footer">
+                        <tr>
+                            <th className="table-resume__amount-due" colSpan="2"><Body2>Amount Due</Body2></th>
+                            <th className="table-resume__total" colSpan="2">£ {invoice.total.toFixed(2)}</th>
+                        </tr>
+                    </tfoot>
+                </table>
             </div>
-
         </main>
     )
 }

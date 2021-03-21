@@ -8,7 +8,7 @@ export default function Header({ currentTheme, changeTheme }) {
     return (
         <header className="header">
             <div className="logo">
-                <Logo className="logo__icon" />
+                <Logo className="logo__icon" viewBox="0 0 28 26" />
             </div>
 
             <button className="theme-toggler" onClick={changeTheme}>

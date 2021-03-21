@@ -1,172 +1,292 @@
-.link {
-    display: flex;
-    align-items: baseline;
-
-    &__text {
-        margin: 0px;
-        margin-left: 24px;
-    }
-    @include themify($themes) {
-        color: themed('textPrimary');
-    }
-}
-
-.status {
-    margin-top: 32px;
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    &__text {
-        @include themify($themes) {
-            color: themed('textSecondary');
-        }
-    }
-}
-
-.informations {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 150px 150px 50px 1fr;
-    row-gap: 32px;
-    margin-bottom: 32px;
-
-    .sender {
-        grid-column: span 2;
-        &__id {
-            margin: 0px;
-            margin-bottom: 4px;
-            @include themify($themes) {
-                color: themed('textPrimary');
-            }
-        }
-
-        &__desc {
-            margin: 0px;
-            margin-bottom: 30px;
-        }
-
-        &__hashtag {
-            color: #7E88C3;
-        }
+.invoice-page {
+    padding: 32px 24px 0px;
+    max-width: 730px;
+    width: 100%;
+    margin: 0px auto;
+    
+    @include breakpoint-up(medium) {
+        padding: 48px 40px 0px;
     }
 
-    .dates {
-        &__invoice {
-            margin-bottom: 32px;
-        }
-
-        &__title {
-            margin: 0px;
-            margin-bottom: 12px;
-        }
-
-        &__date {
-            margin: 0px;
-            @include themify($themes) {
-                color: themed('textPrimary');
-            }
-        }
+    @include breakpoint-up(large) {
+        position: relative;
+        left: 103px;
+        padding-top: 64px;
     }
 
-    .client-infos {
-        &__title {
-            margin: 0px;
-            margin-bottom: 12px;
-        }
-
-        &__name {
-            margin: 0px;
-            @include themify($themes) {
-                color: themed('textPrimary');
-            }
-        }
-
-        &__addr {
-            margin: 0px;
-            margin-top: 8px;
-        }
-    }
-
-    .client-email {
-        grid-column: span 2;
-
-        &__send {
-            margin: 0px;
-            margin-bottom: 12px;
-        }
-        
-        &__email {
-            margin: 0px;
-            @include themify($themes) {
-                color: themed('textPrimary');
-            }
-        }
-    }
-
-
-
-    .resume {
-        background-color: #252945;
-        border-radius: 8px;
-        overflow: hidden;
-        grid-column: 1 / 3;
-        grid-row: 4;
-
-        .items_lists {
-            width: 100%;
-            padding: 24px;
-
-            .item {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                grid-template-rows: 15px 15px;
-                row-gap: 8px;
-                &:not(:last-of-type) {
-                    margin-bottom: 25px;
-                }
-
-                &__total {
-                    grid-column: 2 / 3;
-                    grid-row: 1 / 3;
-                    margin: auto;
-                    margin-right: 0px;
-                    @include themify($themes) {
-                        color: themed('textPrimary');
-                    }
-                }
-
-                &__name, &__sum {
-                    margin: 0px;
-                }
-
-                &__name {
-                    @include themify($themes) {
-                        color: themed('textPrimary');
-                    }
-                }
-            }
-        }
-
-        &__total {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-            padding: 24px;
-            background-color: #0C0E16;
-            color: white;
-        }
-
+    .link {
+        width: 100%;
+        display: flex;
+        align-items: baseline;
+    
         &__text {
-            margin: 0;
+            margin: 0px;
+            margin-left: 24px;
         }
 
-        &__sum {
-            font-size: 20px;
-            line-height: 32px;
-            letter-spacing: -0.416667px;
+        @include themify($themes) {
+            color: themed('textPrimary');
+        }
+    }
+    
+    .status {
+        margin-top: 32px;
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        @include breakpoint-up(medium) {
+            padding: 20px 32px;
+        }
+    
+        &__text {
+            @include themify($themes) {
+                color: themed('textSecondary');
+            }
+            margin-right: 16px;
+        }
+
+        .crud-buttons {
+            display: flex;
+            margin-left: auto;
+
+            &__button {
+                &:not(:last-of-type) {
+                    margin-right: 8px;
+                }
+            }
+
+            @include breakpoint-down(small) {
+                display: none;
+            }
+        }
+
+    }
+    
+    .informations {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 150px 150px 50px 1fr;
+        grid-template-areas: 
+            "sender sender"
+            "dates client-infos"
+            "client-email client-email"
+            "resume resume";
+        row-gap: 32px;
+        margin-bottom: 32px;
+
+
+        @include breakpoint-up(medium) {
+            padding: 32px;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 75px 150px 1fr;
+            grid-template-areas: 
+                "sender sender sender"
+                "dates client-infos client-email"
+                "resume resume resume";
+        }
+
+        @include breakpoint-up(large) {
+            padding: 48px;
+        }
+    
+        .sender {
+            grid-area: sender;
+            @include breakpoint-up(medium) {
+                display: flex;
+                justify-content: space-between;
+            }
+    
+            &__id {
+                margin: 0px;
+                margin-bottom: 4px;
+                @include themify($themes) {
+                    color: themed('textPrimary');
+                }
+            }
+    
+            &__desc {
+                margin: 0px;
+                margin-bottom: 30px;
+            }
+    
+            &__hashtag {
+                color: #7E88C3;
+            }
+
+            &__addr {
+                @include breakpoint-up(medium) {
+                    margin: 0px;
+                    text-align: right;
+                }
+            }
+        }
+    
+        .dates {
+            grid-area: dates;
+            &__invoice {
+                margin-bottom: 32px;
+            }
+    
+            &__title {
+                margin: 0px;
+                margin-bottom: 12px;
+            }
+    
+            &__date {
+                margin: 0px;
+                @include themify($themes) {
+                    color: themed('textPrimary');
+                }
+            }
+        }
+    
+        .client-infos {
+            grid-area: client-infos;
+            &__title {
+                margin: 0px;
+                margin-bottom: 12px;
+            }
+    
+            &__name {
+                margin: 0px;
+                @include themify($themes) {
+                    color: themed('textPrimary');
+                }
+            }
+    
+            &__addr {
+                margin: 0px;
+                margin-top: 8px;
+            }
+        }
+    
+        .client-email {
+            grid-area: client-email;
+            &__send {
+                margin: 0px;
+                margin-bottom: 12px;
+            }
+            
+            &__email {
+                margin: 0px;
+                @include themify($themes) {
+                    color: themed('textPrimary');
+                }
+            }
+        }
+    
+        .table-resume {
+            grid-area: resume;
+            border-collapse: collapse;
+            border-radius: 8px;
+            overflow: hidden;
+            padding: 32px;
+            width: 100%;
+            background-color: #252945;
+            color: #DFE3FA;
+            table-layout: fixed;
+
+            &__cell {
+                padding: 16px 0px;
+                
+                @include breakpoint-up(medium) {
+                    padding: 12px 0px;
+                }
+
+                &--first {
+                    width: 40%;
+                    padding-left: 32px;
+                    text-align: left;   
+
+                    // @include breakpoint-down(small) {
+                    //     padding-left: 24px;
+                    // }
+                }
+
+                &--second {
+                    width: 10%;
+                    text-align: center;     
+                }
+
+                &--third {
+                    width: 25%;
+                    text-align: right;     
+                }
+
+                &--last {
+                    width: 25%;
+                    text-align: right;
+
+                    @include breakpoint-up(medium) {
+                        padding-right: 24px;
+                    }
+                }
+            }
+
+            &__body {
+                // tr:first-child {
+                //     td {
+                //         padding-bottom: 40px;
+                //         @include breakpoint-down(small) {
+                //             padding-top: 24px;
+                //         }
+                //     }
+
+                //     .table-resume__cell--first {
+                //         padding-left: 32px;
+                //     }
+    
+                //     .table-resume__cell--last {
+                //         padding-right: 32px;
+                //     }
+                // }
+
+                tr:last-child {
+                    td {
+                        padding-bottom: 40px;
+                        @include breakpoint-down(small) {
+                            padding-bottom: 24px;
+                        }
+                    }
+
+                    .table-resume__cell--first {
+                        padding-left: 32px;
+                    }
+    
+                    .table-resume__cell--last {
+                        padding-right: 32px;
+                    }
+                }
+            }
+
+            &__header {
+                @include breakpoint-down(small) {
+                    display: none;
+                }
+            }
+
+            &__footer {
+                background-color: #0C0E16;
+                color: #FFFFFF;
+                
+                tr {
+                    height: 80px;
+                }
+
+                th {
+                    padding: 0px 32px;
+                }
+            }
+
+            &__amount-due {
+                text-align: left;
+            }
+            
+            &__total {
+                text-align: right;
+            }
         }
     }
 }
