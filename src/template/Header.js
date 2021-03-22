@@ -1,4 +1,6 @@
 import React from 'react' 
+import { Link } from "react-router-dom"
+
 import { ReactComponent as Logo } from '../assets/logo.svg'
 import { ReactComponent as SunIcon } from '../assets/icon-sun.svg'
 import { ReactComponent as MoonIcon } from '../assets/icon-moon.svg'
@@ -7,9 +9,9 @@ import Avatar from '../assets/image-avatar.jpg'
 export default function Header({ currentTheme, changeTheme }) {
     return (
         <header className="header">
-            <div className="logo">
+            <Link className="logo" to="/">
                 <Logo className="logo__icon" viewBox="0 0 28 26" />
-            </div>
+            </Link>
 
             <button className="theme-toggler" onClick={changeTheme}>
             {currentTheme === 'light' ? 

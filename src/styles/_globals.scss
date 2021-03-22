@@ -19,7 +19,6 @@ body {
 }
 
 .App {
-  // min-height: inherit;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -34,8 +33,16 @@ body {
 }
 
 .main {
-  min-height: inherit;
   flex-grow: 1;
+  margin-top: 72px;
+
+  @include breakpoint-up(medium) {
+    margin-top: 80px;
+  }
+
+  @include breakpoint-up(large) {
+    margin-top: 0px;
+  }
 
   @include themify($themes) {
     background-color: themed('backgroundPrimary');
@@ -51,8 +58,34 @@ body {
   @include themify($themes) {
     background-color: themed('backgroundCard');
   }
+}
 
+.overlay {
+  position: fixed;
+  display: none;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: 3;
+  background: rgba(0, 0, 0, 0.5);
 
+  &--open-flex {
+    display: flex;
+  }
+
+  &--open {
+    display: block;
+  }
+
+  &--header-above {
+    z-index: 1;
+  }
+}
+
+.center {
+  justify-content: center;
+  align-items: center;
 }
 
 .hidden-for-mobile {

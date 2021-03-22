@@ -1,17 +1,6 @@
-import React, { useReducer, useEffect } from 'react'
+import { useReducer, useEffect } from 'react'
 import InvoicesData from '../invoices.json'
 import _ from 'lodash'
-
-// put json in the state
-// create new
-// update 
-// delete
-// when process an action, do it in the local storage aswell
-
-
-
-// check if there is something in local storage 
-
 
 function init(initialState) {
     const localStorageState = window.localStorage.getItem('invoices_data')
@@ -48,7 +37,8 @@ function useInvoiceData() {
     const [state, dispatch] = useReducer(reducer, InvoicesData, init)
 
     useEffect(() => {
-        console.log('here register the state in localstorage')
+        const stringifiedState = JSON.stringify(state)
+        window.localStorage.setItem('invoices_data', stringifiedState)
     }, [state])
 
     return {
@@ -57,6 +47,4 @@ function useInvoiceData() {
     }
 }
 
-export {
-    useInvoiceData
-}
+export { useInvoiceData }

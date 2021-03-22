@@ -1,8 +1,12 @@
 .header {
     height: 72px;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    z-index: 2;
     display: flex;
     justify-content: space-between;
-
 
     @include themify($themes) {
         background-color: themed('backgroundSecondary');
@@ -15,12 +19,10 @@
 
     // Desktop
     @include breakpoint-up(large) {
-        position: fixed;
         width: 103px;
+        height: 100%;
         top: 0px;
         bottom: 0px;
-        // min-height: inherit;
-        height: initial;
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
@@ -28,6 +30,7 @@
     }
 
     .logo {
+        cursor: pointer;
         width: 72px;
         height: 72px;
         background: #7C5DFA;
@@ -133,8 +136,5 @@
                 height: 40px;
             }
         }
-
     }
-    
-
 }

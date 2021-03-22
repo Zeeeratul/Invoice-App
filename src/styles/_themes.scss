@@ -20,6 +20,8 @@ $themes: (
         checkboxColor: #1E2139
     ),
 );
+
+$error: #EC5757;
   
 @mixin themify($themes) {
     @each $theme, $map in $themes {

@@ -2,7 +2,8 @@
     padding: 32px 24px 0px;
     max-width: 730px;
     width: 100%;
-    margin: 0px auto;
+    margin-left: auto;
+    margin-right: auto;
     
     @include breakpoint-up(medium) {
         padding: 48px 40px 0px;
@@ -288,5 +289,20 @@
                 text-align: right;
             }
         }
+    }
+}
+
+.invoice-footer {
+    padding: 22px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    @include themify($themes) {
+        background-color: themed('backgroundCard');
+    }
+
+    @include breakpoint-up(medium) {
+        display: none;
     }
 }

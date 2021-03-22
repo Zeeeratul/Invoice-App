@@ -1,29 +1,38 @@
 import React, { useState } from 'react'
-import { BrowserRouter as Router, Route } from "react-router-dom"
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 import Header from './template/Header'
-import InvoiceFooter from './template/InvoiceFooter'
 import InvoicesIndex from './pages/InvoicesIndex'
 import Invoice from './pages/Invoice'
+import Form from './pages/Form'
+import { useInvoiceData } from './utils/useInvoiceData'
+import { InvoicesContext } from './utils/InvoicesContext'
 
 function App() {
-
   const [theme, setTheme] = useState('light')
+  const { state: invoices, dispatch } = useInvoiceData()
   const changeTheme = () => setTheme(theme === 'light' ? 'dark' : 'light')
   
   return (
-    <div className={`App theme-${theme}`}>
-      <Header currentTheme={theme} changeTheme={changeTheme} />
-      <Router>
-        <Route exact path="/">
-          <InvoicesIndex />
-        </Route>
-        <Route path="/:id">
-          <Invoice />
-          <InvoiceFooter />
-        </Route>
-      </Router>
-    </div>
+    <InvoicesContext.Provider value={{invoices, dispatch}}>
+      <div className={`App theme-${theme}`}>
+        <Router>
+          <Header currentTheme={theme} changeTheme={changeTheme} />
+          <Switch>
+            <Route exact path="/new">
+              <InvoicesIndex />
+              <Form />
+            </Route>
+            <Route exact path="/:id">
+              <Invoice />
+            </Route>
+            <Route path="/">
+              <InvoicesIndex />
+            </Route>
+          </Switch>
+        </Router>
+      </div>
+    </InvoicesContext.Provider>
   )
 }
 
-export default App;
+export default App

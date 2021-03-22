@@ -1,18 +1,30 @@
-import React from 'react' 
-import { useInvoiceData } from '../utils/useInvoiceData'
-import { useParams, Link } from "react-router-dom"
+import React, { useState, useContext } from 'react' 
+import { useParams, Link, Redirect, useHistory } from "react-router-dom"
 import { ReactComponent as ArrowLeftIcon } from '../assets/icon-arrow-left.svg'
 import { H3, H3sm, Body1, Body2 } from '../template/Typos'
+import Modal from '../template/Modal'
+import { InvoicesContext } from '../utils/InvoicesContext'
 import _ from 'lodash'
 
 export default function Invoice() {
-    const { state } = useInvoiceData()
+    const { invoices, dispatch } = useContext(InvoicesContext)
     const { id } = useParams()
-    const invoice = state ? _.find(state, { 'id' : id }) : null
+    const history = useHistory()
+    const [openDeleteModal, setOpenDeleteModal] = useState(false)
+    const invoice = invoices ? _.find(invoices, { 'id' : id }) : null
 
-    console.log(invoice)
+    const openModal = () => setOpenDeleteModal(true)
+    const closeModal = () => setOpenDeleteModal(false)
+    const deleteInvoice = () => {
+        dispatch({ type: 'delete', id: invoice.id })
+        history.push('/')
+    }
+
+    if (!invoice) return <Redirect to="/" />
 
     return (
+        <>
+        <Modal isOpen={openDeleteModal} close={closeModal} deleteInvoice={deleteInvoice} />
         <main className="main invoice-page">
             <Link to="/" className="link">
                 <ArrowLeftIcon />
@@ -27,7 +39,7 @@ export default function Invoice() {
                 </button>
                 <div className="crud-buttons">
                     <button className="crud-buttons__button button button--edit">Edit</button>
-                    <button className="crud-buttons__button button button--delete">Delete</button>
+                    <button className="crud-buttons__button button button--delete" onClick={openModal}>Delete</button>
                     <button className="crud-buttons__button button button--mark-paid">Mark as Paid</button>
                 </div>
             </div>
@@ -109,6 +121,11 @@ export default function Invoice() {
                 </table>
             </div>
         </main>
+        <footer className="invoice-footer">
+            <button className="button button--edit">Edit</button>
+            <button className="button button--delete" onClick={openModal}>Delete</button>
+            <button className="button button--mark-paid">Mark as Paid</button>
+        </footer>
+        </>
     )
 }
-
