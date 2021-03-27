@@ -1,0 +1,111 @@
+.form-overlay {
+
+}
+
+
+
+.container {
+    height: 100%;
+    width: 100%;
+    padding: 32px 24px;
+    padding-top: 104px;
+    
+    overflow: scroll;
+    background-color: #141625;
+    
+    @include themify($themes) {
+        background-color: themed('formBackground');
+    }
+    
+    @include breakpoint-up(medium) {
+        padding-top: 112px;
+        max-width: 617px;
+        border-radius: 0px 20px 20px 0px;
+    }
+
+    @include breakpoint-up(large) {
+        padding-top: 32px;
+        margin-left: 103px;
+    }
+
+    .link {
+        width: 100%;
+        display: flex;
+        align-items: baseline;
+
+        @include breakpoint-up(medium) {
+            display: none;
+        }
+    
+        &__text {
+            margin: 0px;
+            margin-left: 24px;
+        }
+
+        @include themify($themes) {
+            color: themed('textPrimary');
+        }
+    }
+
+    &__title {
+        margin-top: 24px;
+        margin-bottom: 24px;
+
+        font-weight: bold;
+        font-size: 24px;
+        line-height: 32px;
+        letter-spacing: -0.5px;
+
+        @include themify($themes) {
+            color: themed('textPrimary');
+        }
+    }
+
+    .form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 15px repeat(3, 73px) 31px repeat(5, 73px) 89px 73px 73px 74px auto 72px;
+        row-gap: 24px;
+        column-gap: 23px;
+        align-items: end;
+
+        &__block-title {
+            grid-column: 1 / -1;
+            font-weight: bold;
+            color: #7C5DFA;
+            margin: 0px;
+            align-self: flex-end;
+            width: 100%;
+        }
+
+        &__button {
+            cursor: pointer;
+            border: none;
+            border-radius: 24px;
+            height: 48px;
+
+            width: 100%;
+            grid-column: 1 / -1;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 17px 0px 16px;
+            color: #888EB0;
+
+            @include themify($themes) {
+                background-color: themed('buttonBackground')
+            }
+
+            &__icon {
+                width: 10px;
+                height: 10px;
+                margin-right: 4px;
+
+                path {
+                    fill: #888EB0;
+                }
+            }
+        }
+    }
+}

@@ -51,8 +51,7 @@ export default function Header({ filters, handleFilters, invoices }) {
                     className="select__title-container"
                     onClick={handleOpenSelect}
                 >
-                    <H3sm className="select__title hidden-for-tablet-desktop">Filter</H3sm>
-                    <H3sm className="select__title hidden-for-mobile">Filter by status</H3sm>
+                    <H3sm className="select__title">Filter<span className="hidden-for-mobile">{' by status'}</span></H3sm>
                     <ArrowDownIcon className="select__arrow" />
                 </div>
 
@@ -81,8 +80,7 @@ export default function Header({ filters, handleFilters, invoices }) {
                 <div className="button__circle">
                     <PlusIcon viewBox="0 0 11 11" className="button__plus-icon" />
                 </div>
-                <H3sm className="button__title hidden-for-tablet-desktop">New</H3sm>
-                <H3sm className="button__title hidden-for-mobile">New Invoice</H3sm>
+                <H3sm className="button__title">New<span className="hidden-for-mobile">{' Invoice'}</span></H3sm>
             </button>
         </header>
     )

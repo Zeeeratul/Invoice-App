@@ -1,0 +1,70 @@
+.input-block {
+    display: flex;
+    flex-direction: column;
+    min-width: 152px;
+    // margin-bottom: 24px;
+    flex-grow: 1;
+
+    &__label {
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 15px;
+        letter-spacing: -0.25px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+
+        @include themify($themes) {
+            // background-color: themed('backgroundCard');
+            color: themed('labelColor');
+        }
+    }
+
+    &__error-text {
+        visibility: hidden;
+        text-align: right;
+        font-weight: 600;
+        font-size: 10px;
+        line-height: 15px;
+        letter-spacing: -0.208333px;
+        color: $error;
+    }
+
+    &__input {
+        margin-top: 10px;
+        background: #FFFFFF;
+        border: 1px solid #DFE3FA;
+        border-radius: 4px;
+        padding: 17px 20px 16px;
+        font-family: 'Spartan', sans-serif;
+        font-weight: bold;
+        font-size: 12px;
+        line-height: 15px;
+        letter-spacing: -0.25px;
+
+        @include themify($themes) {
+            background-color: themed('backgroundCard');
+            color: themed('textPrimary');
+            border-color: themed('borderColor');
+        }
+    }
+
+    &--error {
+        .input-block__input {
+            border-color: $error;
+            color: $error;
+        }
+        
+        .input-block__label {
+            color: $error;
+        }
+        
+        .input-block__error-text {
+            visibility: visible;
+        }
+    }
+
+    &--full {
+        grid-column: 1 / -1;
+    }
+}

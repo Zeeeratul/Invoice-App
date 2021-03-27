@@ -1,0 +1,103 @@
+.select {
+    position: relative;
+    grid-column: 1 / -1;
+    
+    &__title {
+        cursor: pointer;
+        // display: flex;
+        // flex-direction: column;
+    }
+
+    &__label {
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 15px;
+        letter-spacing: -0.25px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+
+        @include themify($themes) {
+            // background-color: themed('backgroundCard');
+            color: themed('labelColor');
+        }
+    }
+
+    &__input {
+        
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 10px;
+        box-sizing: border-box;
+        border: 1px solid #DFE3FA;
+        border-radius: 4px;
+        padding: 16px;
+        padding-left: 20px;
+        font-family: 'Spartan', sans-serif;
+        font-weight: bold;
+        font-size: 12px;
+        line-height: 15px;
+        letter-spacing: -0.25px;
+
+        @include themify($themes) {
+            background-color: themed('backgroundCard');
+            color: themed('textPrimary');
+            border-color: themed('borderColor');
+        }
+    }
+
+    &--open {
+        .select__dropdown {
+            display: block;
+        }
+
+        .select__arrow {
+            transform: rotate(180deg);
+        }
+    }
+
+    &__dropdown {
+        display: none;
+        position: absolute;
+        top: 83px;
+        width: 100%;
+        padding: 0px;
+        // box-shadow: 0px 10px 20px rgba(72, 84, 159, 0.25);
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
+        border-radius: 8px;
+
+        @include themify($themes) {
+            color: themed('selectColor');
+            background-color: themed('selectBackground');
+        }
+    }
+
+    &__list {
+        text-decoration: none;
+        list-style: none;
+        margin: 0px;
+        padding: 0px;
+        overflow: hidden;
+    }
+
+    &__item {
+        padding: 15px 24px 16px;
+        font-weight: bold;
+        font-size: 12px;
+        line-height: 15px;
+        letter-spacing: -0.25px;
+        cursor: pointer;
+        
+        &:not(:last-child) {
+            border-bottom: 1px solid #1E2139;
+            @include themify($themes) {
+                border-bottom-color: themed('checkboxColor');
+            }
+        }
+
+        &:hover {
+            color: $purple
+        }
+    }
+}

@@ -7,7 +7,11 @@ $themes: (
         textSecondary: #888EB0,
         buttonBackground: #F9FAFE,
         selectBackground: #FFFFFF,
-        checkboxColor: #DFE3FA
+        selectColor: #0C0E16,
+        checkboxColor: #DFE3FA,
+        labelColor: #7E88C3,
+        formBackground: #FFFFFF,
+        borderColor: #DFE3FA
     ),
     dark: (
         backgroundPrimary: #0C0E16,
@@ -17,11 +21,16 @@ $themes: (
         textSecondary: #DFE3FA,
         buttonBackground: #252945,
         selectBackground: #252945,
-        checkboxColor: #1E2139
+        selectColor: #DFE3FA,
+        checkboxColor: #1E2139,
+        labelColor: #DFE3FA,
+        formBackground: #141625,
+        borderColor: #252945
     ),
 );
 
 $error: #EC5757;
+$purple: #9277FF;
   
 @mixin themify($themes) {
     @each $theme, $map in $themes {

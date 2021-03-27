@@ -1,0 +1,105 @@
+.date-picker {
+    position: relative;
+    grid-column: 1 / -1;
+
+    &__title {
+        cursor: pointer;
+    }
+
+    &__label {
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 15px;
+        letter-spacing: -0.25px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+
+        @include themify($themes) {
+            color: themed('labelColor');
+        }
+    }
+
+    &__input {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 10px;
+        box-sizing: border-box;
+        border: 1px solid #DFE3FA;
+        border-radius: 4px;
+        padding: 16px;
+        padding-left: 20px;
+        font-family: 'Spartan', sans-serif;
+        font-weight: bold;
+        font-size: 12px;
+        line-height: 15px;
+        letter-spacing: -0.25px;
+
+        @include themify($themes) {
+            background-color: themed('backgroundCard');
+            color: themed('textPrimary');
+            border-color: themed('borderColor');
+        }
+    }
+
+    &__dropdown {
+        display: none;
+        position: absolute;
+        top: 83px;
+        width: 100%;
+        padding: 25px 24px 32px;
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
+        border-radius: 8px;
+
+        @include themify($themes) {
+            color: themed('selectColor');
+            background-color: themed('selectBackground');
+        }
+    }
+
+    &__header {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        font-weight: bold;
+        font-size: 12px;
+        line-height: 15px;
+        text-align: center;
+        letter-spacing: -0.25px;
+    }
+
+    &__arrow {
+        cursor: pointer;
+    }
+
+    &__calendar {
+        margin-top: 32px;
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(7, auto);
+        column-gap: 15px;
+        grid-template-rows: repeat(5, auto);
+        row-gap: 16px;
+        justify-items: stretch;
+
+        &__day {
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 12px;
+            line-height: 15px;
+            text-align: center;
+            letter-spacing: -0.25px;
+
+            &:hover {
+                color: $purple;
+            }
+        }
+    }
+
+    &--open {
+        .date-picker__dropdown {
+            display: block;
+        }
+    }
+}

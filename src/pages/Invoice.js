@@ -20,6 +20,8 @@ export default function Invoice() {
         history.push('/')
     }
 
+    console.log(invoice)
+
     if (!invoice) return <Redirect to="/" />
 
     return (
